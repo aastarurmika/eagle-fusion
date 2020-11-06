@@ -82,14 +82,17 @@ $badge-padding: 12px;
   margin-left: $size-m;
 }
 
-.mat-title {
- font-size: 16px;
+.mat-card {
+  padding: 0;
+  border-radius: 8px;
 }
 
 .entity-container {
   display: flex;
   flex-direction: column;
-  padding: 7px 0 7px 0;
+  padding: $size-m 0 $size-s 0;
+  background: rgba(250, 209, 175, 0.2) 0% 0% no-repeat padding-box;
+  border-radius: inherit;
   cursor: pointer;
 }
 

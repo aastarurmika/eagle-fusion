@@ -11,6 +11,7 @@ export class OverviewComponent implements OnInit {
   @Input() complexityLevel = ''
   @Input() duration = 0
   @Input() timeLimit = 0
+  @Input() progressStatus = ''
   @Input() noOfQuestions = 0
   @Output() userSelection = new EventEmitter<NSQuiz.TUserSelectionType>()
 

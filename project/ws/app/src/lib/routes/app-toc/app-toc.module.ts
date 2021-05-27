@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { RouterModule } from '@angular/router'
+import { ReactiveFormsModule } from '@angular/forms'
 import { AppTocRoutingModule } from './app-toc-routing.module'
 
 import {
@@ -20,9 +21,12 @@ import {
   MatExpansionModule,
   MatProgressSpinnerModule,
   MatCheckboxModule,
-  MatFormFieldModule,
   MatInputModule,
-
+  MatFormFieldModule,
+  MatSelectModule,
+  MatSnackBarModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
 } from '@angular/material'
 
 // comps
@@ -35,9 +39,11 @@ import { AppTocBannerComponent } from './components/app-toc-banner/app-toc-banne
 import { AppTocCohortsComponent } from './components/app-toc-cohorts/app-toc-cohorts.component'
 import { AppTocContentCardComponent } from './components/app-toc-content-card/app-toc-content-card.component'
 import { AppTocDiscussionComponent } from './components/app-toc-discussion/app-toc-discussion.component'
+import { CreateBatchDialogComponent } from './components/create-batch-dialog/create-batch-dialog.component'
 
 // services
 import { AppTocResolverService } from './resolvers/app-toc-resolver.service'
+// import { ProfileResolverService } from './resolvers/profile-resolver.service'
 import { AppTocService } from './services/app-toc.service'
 import { TrainingApiService } from '../infy/routes/training/apis/training-api.service'
 
@@ -96,7 +102,9 @@ import { ProfileImageModule } from '../../../../../../../library/ws-widget/colle
 import { EditorService } from '../../../../../author/src/lib/routing/modules/editor/services/editor.service'
 import { ApiService, AccessControlService } from '../../../../../author/src/public-api'
 import { LicenseComponent } from './components/license/license.component'
-
+// import { AppTocSinglePageComponent } from './components/app-toc-single-page/app-toc-single-page.component'
+// import { AppTocSinglePageComponent as AppTocSinglePageRootComponent } from './routes/app-toc-single-page/app-toc-single-page.component'
+// import { AppTocSinglePageDirective } from './routes/app-toc-single-page/app-toc-single-page.directive'
 @NgModule({
   declarations: [
     AppTocAnalyticsComponent,
@@ -117,10 +125,16 @@ import { LicenseComponent } from './components/license/license.component'
     KnowledgeArtifactDetailsComponent,
     AppTocAnalyticsTilesComponent,
     LicenseComponent,
+    // AppTocSinglePageComponent,
+    // AppTocSinglePageRootComponent,
+    // AppTocSinglePageDirective,
+    CreateBatchDialogComponent,
   ],
   imports: [
     CommonModule,
     RouterModule,
+    ReactiveFormsModule,
+    FormsModule,
     AppTocRoutingModule,
     MatToolbarModule,
     MatCheckboxModule,
@@ -141,7 +155,11 @@ import { LicenseComponent } from './components/license/license.component'
     MatProgressBarModule,
     MatProgressSpinnerModule,
     MatDialogModule,
+    MatSelectModule,
+    MatSnackBarModule,
     MatExpansionModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     DisplayContentTypeModule,
     DisplayContentTypeIconModule,
     PipeDurationTransformModule,
@@ -194,6 +212,9 @@ import { LicenseComponent } from './components/license/license.component'
     AppTocDialogIntroVideoComponent,
     AppTocOverviewComponent,
     AppTocHomeComponent,
+    // AppTocSinglePageComponent,
+    // AppTocSinglePageRootComponent,
+    CreateBatchDialogComponent,
   ],
 })
 export class AppTocModule { }

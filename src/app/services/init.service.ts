@@ -25,7 +25,7 @@ import {
 import { environment } from '../../environments/environment'
 /* tslint:disable */
 // import _ from 'lodash'
-import * as _ from "lodash"
+import * as _ from 'lodash'
 // import { retry } from 'rxjs/operators'
 
 interface IDetailsResponse {

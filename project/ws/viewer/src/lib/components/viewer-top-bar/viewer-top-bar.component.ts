@@ -89,13 +89,14 @@ export class ViewerTopBarComponent implements OnInit, OnChanges, OnDestroy {
       // )
       //  {
       // this.collection = this.getPlaylistContent(collectionId, collectionType)
+
       try {
         this.contentSvc
           .fetchAuthoringContent(collectionId).subscribe(data => {
             this.collection = data
             if (this.configSvc.instanceConfig) {
               this.appIcon = this.domSanitizer.bypassSecurityTrustResourceUrl(
-                this.configSvc.instanceConfig.logos.appBottomNav,
+                this.configSvc.instanceConfig.logos.app,
               )
             }
             // tslint:disable-next-line:no-shadowed-variable
@@ -105,6 +106,7 @@ export class ViewerTopBarComponent implements OnInit, OnChanges, OnDestroy {
               if (this.resourceId !== this.viewerDataSvc.resourceId) {
                 this.resourceId = this.viewerDataSvc.resourceId as string
                 this.resourceName = this.viewerDataSvc.resource ? this.viewerDataSvc.resource.name : ''
+                // this.resourcePrimaryCategory = this.viewerDataSvc.resource ? this.viewerDataSvc.resource.primaryCategory : ''
               }
             })
             this.paramSubscription = this.activatedRoute.queryParamMap.subscribe(async params => {
@@ -115,6 +117,7 @@ export class ViewerTopBarComponent implements OnInit, OnChanges, OnDestroy {
               _data => {
                 this.resourceId = this.viewerDataSvc.resourceId as string
                 this.resourceName = this.viewerDataSvc.resource ? this.viewerDataSvc.resource.name : ''
+                // this.resourcePrimaryCategory = this.viewerDataSvc.resource ? this.viewerDataSvc.resource.primaryCategory : ''
               },
             )
             this.viewerSvc.castResource.subscribe(user => this.screenContent = user)
@@ -124,17 +127,6 @@ export class ViewerTopBarComponent implements OnInit, OnChanges, OnDestroy {
       }
     }
 
-    // this.viewerDataSubscription = this.viewerSvc
-    // .getContent(this.activatedRoute.snapshot.paramMap.get('resourceId') || '')
-    // .subscribe(data => {
-    //   this.pdfData = data
-    //   // if (this.pdfData) {
-    //   //   this.formDiscussionForumWidget(this.pdfData)
-    //   //   if (this.discussionForumWidget) {
-    //   //     this.discussionForumWidget.widgetData.isDisabled = true
-    //   //   }
-    //   // }
-    // }
 
   }
 
@@ -154,6 +146,8 @@ export class ViewerTopBarComponent implements OnInit, OnChanges, OnDestroy {
       this.viewerDataServiceResourceSubscription.unsubscribe()
     }
   }
+
+
 
   //   print(collection1:any){
   //  //TODO   console.log(collection1)

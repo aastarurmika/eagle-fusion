@@ -165,6 +165,7 @@ export class ChatbotComponent implements OnInit {
     } else {
       this.dropdownStatus = ''
       this.enableInputForDropdown = false
+      this.inputMsgEnabled = false
       this.disableLocation = true
     }
 
@@ -187,13 +188,21 @@ export class ChatbotComponent implements OnInit {
       }
     })
 
-    this.districtArr = disList[0].districts
 
-    this.dropdownStatus = 'district'
-    const array: any = []
-    const obsof1 = of(array)
-    this.filteredOptions = obsof1
-    this.councilFilter('')
+    if (disList.length > 0) {
+
+      this.districtArr = disList[0].districts
+
+      this.dropdownStatus = 'district'
+      const array: any = []
+      const obsof1 = of(array)
+      this.filteredOptions = obsof1
+      this.councilFilter('')
+    } else {
+      this.dropdownStatus = ''
+      this.disableLocation = true
+    }
+
 
   }
 
@@ -230,6 +239,11 @@ export class ChatbotComponent implements OnInit {
         this.updateProfile()
       }
       if (this.nextId === 'proceed') {
+
+        if (_chatFormValue.replymsg === 'Mother/Family member') {
+          this.updateProfile()
+        }
+
         this.nextId = _chatFormValue.replymsg
         message = _chatFormValue.replymsg
         this.inputMsgEnabled = true
@@ -241,6 +255,7 @@ export class ChatbotComponent implements OnInit {
 
       if (this.nextId === 'location') {
         this.enableInputForDropdown = true
+        this.inputMsgEnabled = true
         this.createChatForm.value.replymsg = ''
         this.dropdownStatus = 'country'
         this.disableLocation = false
@@ -261,6 +276,7 @@ export class ChatbotComponent implements OnInit {
         return this.nextId
       }
       if (_chatFormValue.replymsg === 'skip') {
+        this.skipButton = false
         if (this.nextId === 'organizationName') {
           this.inputMsgEnabled = true
           this.updateProfile()
@@ -269,7 +285,7 @@ export class ChatbotComponent implements OnInit {
           this.sendQuestion(this.currentData1)
           return this.nextId
         }
-        this.skipButton = false
+
       }
       outputArea.append(`<div class="bot-message">
           <div class="message">

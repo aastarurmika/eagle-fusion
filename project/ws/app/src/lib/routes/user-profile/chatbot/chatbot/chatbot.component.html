@@ -102,7 +102,6 @@
 
 
           <mat-autocomplete #locationD="matAutocomplete">
-            <mat-option [value]="null">Choose your District </mat-option>
             <mat-option *ngFor="let option of filteredOptionsDistrict | async" [value]="option"
               (onSelectionChange)="getSelectedDataDistrict(option)">
               {{ option }}
@@ -131,7 +130,8 @@
         [formGroup]="createChatForm" (ngSubmit)="getChatResponse(chatForm.value)">
         <input type="text" id="user-input" name="replymsg" class="user-input" placeholder="Enter the message"
           formControlName="replymsg" [readonly]="inputMsgEnabled && enableInputForDropdown">
-        <button mat-button type="submit" class="btn-chat-reply" [disabled]="inputMsgEnabled">Send</button>
+        <button mat-button type="submit" class="btn-chat-reply"
+          [disabled]="inputMsgEnabled && !enableInputForDropdown">Send</button>
       </form>
     </ng-container>
   </div>

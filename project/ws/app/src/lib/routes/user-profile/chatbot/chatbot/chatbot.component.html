@@ -21,12 +21,16 @@
     <img src="/fusion-assets/images/typing.gif" style="width: 40px;" [class.hide]="showTypingIcon" />
     <div class="option-section ml-5">
       <div *ngIf="!skipButton && showOptionFields">
-        <div class="user-message user-message-option" *ngFor="let option of options">
+        <div class="user-message user-message-option" *ngFor="let option of options; let i = index">
           <ng-container *ngIf="option === 'Others' || option === 'Others - Please Mention'">
-            <button mat-button class="message option" [disabled]="!inputMsgEnabled">{{option}}</button>
+            <button mat-button class="message option" [disabled]="!inputMsgEnabled"
+              [ngClass]="{'option-selected' : otherbtnactive}"
+              (click)="getOptionSelected({'replymsg':option})">{{option}}</button>
           </ng-container>
           <ng-container *ngIf="option !== 'Others' && option !== 'Others - Please Mention'">
             <button mat-button class="message option" [disabled]="!inputMsgEnabled"
+              [ngClass]="{'option-selected' : otherbtnactive && !inputMsgEnabled &&
+                  (option === 'Others' || option === 'Others - Please Mention'|| option === 'Others - Please Specify')}"
               (click)="getChatResponseCategorization({'replymsg':option})">{{option}}</button>
           </ng-container>
         </div>
